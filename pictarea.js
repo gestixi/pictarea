@@ -349,11 +349,9 @@
     */
     mouseover: function(evt) {
       var area = evt.target,
-        options = this.options,
-        areaDisableKey = options.areaDisableKey;
+        options = this.options;
         
       if (!area) return;
-      if (areaDisableKey && area.hasAttribute(areaDisableKey)) return;
 
       var mouseoverEvent = $.Event('enterArea.pictarea', {
         originalEvent: evt,
