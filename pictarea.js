@@ -393,16 +393,19 @@
     select: function(evt) {
       var area = evt.target,
         options = this.options,
-        areaValueKey = options.areaValueKey,
-        selection = this.selection,
-        value = null;
+        areaDisableKey = options.areaDisableKey;
 
-      var selectEvent = $.Event('selectArea.pictarea', {
-        originalEvent: evt,
-        area: area,
-        key: areaValueKey ? area.getAttribute(areaValueKey) : null,
-        pictarea: this
-      });
+      if (areaDisableKey && area.hasAttribute(areaDisableKey)) return;
+
+      var areaValueKey = options.areaValueKey,
+        selection = this.selection,
+        value = null,
+        selectEvent = $.Event('selectArea.pictarea', {
+          originalEvent: evt,
+          area: area,
+          key: areaValueKey ? area.getAttribute(areaValueKey) : null,
+          pictarea: this
+        });
 
       this.$img.trigger(selectEvent);
       if (selectEvent.isDefaultPrevented()) return;
