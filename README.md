@@ -99,7 +99,7 @@ Maximum number of selections allowed.
 
 ### updateOnResize  *{boolean}*
 
-A boolean indicating if the canvas should be redraw when the window is resized. 
+A boolean indicating if the canvas should be redraw when the window is resized.
 
 The window size is checked using requestAnimationFrame for good performance.
 
@@ -122,7 +122,7 @@ This event fires whenever `mouseover` is trigger on an area.
         offset = $img.offset(),
         top = evt.originalEvent.pageY - offset.top,
         left = evt.originalEvent.pageX - offset.left;
-    
+
       $caption.text($area.attr('alt')).css({ top: top, left: left }).show();
     })
 
@@ -184,4 +184,4 @@ Compiled Size:  **1.85KB gzipped** (4.55KB uncompressed)
 
 ## Copyright and license
 
-Copyright 2016 GestiXi under [The MIT License (MIT)](LICENSE).
+Copyright 2016-2019 GestiXi under [The MIT License (MIT)](LICENSE).

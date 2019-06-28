@@ -1,9 +1,9 @@
 // ==========================================================================
 // Project:     Pictarea
 // Description: jQuery plugin to draw HTML Image map areas on a canvas and manage selection
-// Copyright:   ©2016 GestiXi
+// Copyright:   ©2016-2019 GestiXi
 // License:     Licensed under the MIT license (see LICENCE)
-// Version:     1.0.1
+// Version:     1.1.0
 // Author:      Nicolas BADIA
 // ==========================================================================
 
