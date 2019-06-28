@@ -8,13 +8,13 @@
 // ==========================================================================
 
 !function($) { "use strict";
-  
+
   // ..........................................................
   // PICTAREA PLUGIN DEFINITION
   //
 
   $.fn.pictarea = function(options) {
-    
+
     return this.each(function() {
       var that = this,
         $this = $(this),
@@ -128,10 +128,10 @@
     maxSelections: 1,
 
     /**
-      A boolean indicating if the canvas should be redraw when the window is resized. 
+      A boolean indicating if the canvas should be redraw when the window is resized.
 
       The window size is checked using requestAnimationFrame for good performance.
-      
+
       @type Boolean
       @default false
       @since Version 1.0
@@ -144,7 +144,7 @@
   // PICTAREA PUBLIC CLASS DEFINITION
   //
 
-  var Pictarea = function(img, options) { 
+  var Pictarea = function(img, options) {
     var that = this;
     that.options = options;
     that.img = img;
@@ -175,7 +175,7 @@
     $parent.append($visibleImg);
     $parent.append($canvas);
     $parent.append($img);
-    
+
 
     this.drawCanvas();
 
@@ -189,7 +189,7 @@
         that.select(evt);
         evt.preventDefault();
       });
-    
+
     if (options.rescaleOnResize) {
       $(window).resize(function(e) { that.scheduleRedraw(); });
     }
@@ -207,14 +207,14 @@
       @type DOM Element
     */
     hovered: null,
-    
+
     /**
       The selected areas.
 
       @type Array of DOM Element
     */
     selection: null,
-    
+
     /**
       The extracted value from the selection.
 
@@ -231,7 +231,7 @@
 
       this.canvas = canvas;
       this.$canvas = $canvas;
-      
+
       return $canvas;
     },
 
@@ -245,7 +245,7 @@
       canvas.height = canvas.offsetHeight;
 
       canvas.getContext("2d").clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
-      
+
       this.drawZones();
     },
 
@@ -271,28 +271,28 @@
         context = this.canvas.getContext('2d'),
         $area = $(area),
         shape = $area.attr('shape').toLowerCase().substr(0,4);
-      
+
       if (initialArea) {
         var $initialArea = $(initialArea),
           initialCoords = $initialArea.attr('coords').split(','),
           factor = this.imgWidth / this.canvas.offsetWidth;
-        
+
         for (var i=0; i < initialCoords.length; i++) {
-          initialCoords[i] = parseFloat(initialCoords[i]) / factor; 
+          initialCoords[i] = parseFloat(initialCoords[i]) / factor;
         }
         $area.attr('coords', initialCoords.join(','));
       }
-      
+
       var coords = $area.attr('coords').split(',');
       for (var i=0; i < coords.length; i++) {
-        coords[i] = parseFloat(coords[i]); 
+        coords[i] = parseFloat(coords[i]);
       }
-      
+
       context.save();
-      
+
       this.drawShape(shape, coords);
       this.styleShape(area);
-      
+
       context.restore();
     },
 
@@ -301,23 +301,23 @@
     */
     drawShape: function(shape, coords) {
       var context = this.canvas.getContext('2d');
-      
+
       context.beginPath();
       if (shape === 'rect') {
         context.rect(coords[0], coords[1], coords[2] - coords[0], coords[3] - coords[1]);
-      } 
+      }
       else if (shape === 'poly') {
         context.moveTo(coords[0], coords[1]);
         for (var i=2; i < coords.length; i+=2) {
           context.lineTo(coords[i], coords[i+1]);
         }
-      } 
+      }
       else if (shape === 'circ') {
         context.arc(coords[0], coords[1], coords[2], 0, Math.PI * 2, false);
       }
       context.closePath();
     },
-    
+
     /**
       @private
     */
@@ -326,7 +326,7 @@
         options = this.options,
         areaDisableKey = options.areaDisableKey,
         style = options.normal;
-        
+
       if (areaDisableKey && area.hasAttribute(areaDisableKey)) {
         style = options.disabled;
       }
@@ -338,19 +338,19 @@
           style = $.extend({}, style, options.active);
         }
       }
-      
+
       $.extend(context, style);
       context.fill();
       context.stroke();
     },
-    
+
     /**
       @private
     */
     mouseover: function(evt) {
       var area = evt.target,
         options = this.options;
-        
+
       if (!area) return;
 
       var mouseoverEvent = $.Event('enterArea.pictarea', {
@@ -358,7 +358,7 @@
         area: area,
         pictarea: this
       });
-      
+
       this.$img.trigger(mouseoverEvent);
       if (mouseoverEvent.isDefaultPrevented()) return;
 
@@ -366,27 +366,27 @@
 
       this.drawCanvas();
     },
-    
+
     /**
       @private
     */
     mouseout: function(evt) {
       var area = evt.target;
       if (!area) return;
-      
+
       var mouseoutEvent = $.Event('leaveArea.pictarea', {
         originalEvent: evt,
         area: area,
         pictarea: this
       });
-      
+
       this.$img.trigger(mouseoutEvent);
       if (mouseoutEvent.isDefaultPrevented()) return;
-      
+
       this.hovered = null;
       this.drawCanvas();
     },
-    
+
     /**
       @private
     */
@@ -396,29 +396,29 @@
         areaValueKey = options.areaValueKey,
         selection = this.selection,
         value = null;
-      
+
       var selectEvent = $.Event('selectArea.pictarea', {
         originalEvent: evt,
         area: area,
         key: areaValueKey ? area.getAttribute(areaValueKey) : null,
         pictarea: this
       });
-      
+
       this.$img.trigger(selectEvent);
       if (selectEvent.isDefaultPrevented()) return;
 
       if (!selection) selection = [];
-      
+
       var areaSelIndex = selection.indexOf(area),
         maxSelections = options.maxSelections;
-      
+
       if (areaSelIndex === -1) selection.push(area);
       else selection.splice(areaSelIndex, 1);
-      
+
       while (maxSelections >= 0 && selection.length > options.maxSelections) {
         selection.shift();
       }
-      
+
       if (areaValueKey) {
         if (maxSelections === 1) {
           if (selection[0]) {
@@ -434,12 +434,12 @@
           });
         }
       }
-      
+
       this.selection = selection;
       this.value = value;
 
       this.drawCanvas();
-      
+
       var changeEvent = $.Event('change.pictarea', {
         originalEvent: evt,
         area: area,
@@ -449,7 +449,7 @@
       });
       this.$img.trigger(changeEvent);
     },
-    
+
     /**
       Removes the data from the element.
 
@@ -468,7 +468,7 @@
       Schedule a redraw.
     */
     scheduleRedraw: function() {
-      if (this._didScheduleScale) return; 
+      if (this._didScheduleScale) return;
 
       if (window.requestAnimationFrame) {
         var that = this;
