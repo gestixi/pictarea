@@ -3,7 +3,8 @@
   "description": "jQuery plugin to draw HTML Image map areas on a canvas and manage selection",
   "main": "pictarea.js",
   "authors": [
-    "GestiXi <nicolas@gestixi.com> (https://www.gestixi.com)"
+    "GestiXi <nicolas@gestixi.com> (https://www.gestixi.com)",
+    "Workneax <erik.carretoni@gmail.com> (Erik Carretoni)"
   ],
   "license": "MIT",
   "keywords": [

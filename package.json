@@ -1,6 +1,6 @@
 {
   "name": "pictarea",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "jQuery plugin to draw HTML Image map areas on a canvas and manage selection",
   "main": "pictarea.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gestixi/pictarea.git"
+    "url": "git+https://github.com/carretonierik/pictarea.git"
   },
   "keywords": [
     "map",
@@ -18,10 +18,10 @@
     "picture",
     "selection"
   ],
-  "author": "GestiXi <nicolas@gestixi.com> (https://www.gestixi.com)",
+  "author": "Erik Carretoni <erik.carretoni@gmai.com> (Erik Carretoni)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gestixi/pictarea/issues"
+    "url": "https://github.com/carretonierik/pictarea/issues"
   },
-  "homepage": "https://github.com/gestixi/pictarea#readme"
+  "homepage": "https://github.com/carretonierik/pictarea#readme"
 }
