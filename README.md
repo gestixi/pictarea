@@ -164,7 +164,7 @@ This event fires whenever the value has changed.
 
 ------
 
-##Method
+## Method
 
 
 ### selectAreas([areValueKey, areValueKey, ...])
