@@ -3,8 +3,9 @@
 // Description: jQuery plugin to draw HTML Image map areas on a canvas and manage selection
 // Copyright:   ©2016-2019 GestiXi
 // License:     Licensed under the MIT license (see LICENCE)
-// Version:     1.1.0
+// Version:     1.1.1
 // Author:      Nicolas BADIA
+// Forked by:   Erik CARRETONI
 // ==========================================================================
 
 !function($) { "use strict";
@@ -13,7 +14,7 @@
   // PICTAREA PLUGIN DEFINITION
   //
 
-  $.fn.pictarea = function(options) {
+  $.fn.pictarea = function(options, parameters) {
 
     return this.each(function() {
       var that = this,
@@ -43,7 +44,7 @@
         }
       }
       else {
-        if (typeof options == 'string') data[options]();
+        if (typeof options == 'string') data[options](parameters);
       }
     })
   }
@@ -481,6 +482,55 @@
       else {
         this.drawCanvas();
       }
+    },
+
+	/**
+      Select specific areas by their areaValueKey. (by Erik Carretoni - 2023-04-12)
+
+      Here are some examples on how you can call the selectAreas method:
+
+          $image.pictarea('selectAreas', [1, 2]);
+          $image.pictarea('selectAreas', ['1', '2']);
+          $image.pictarea('selectAreas', 1);
+          $image.pictarea('selectAreas', '1');
+          $image.pictarea('selectAreas', '1, 2');                   
+    */
+    selectAreas: function (areaValueKeys) {
+	  var _this = this;
+        if (!areaValueKeys) {
+        this.selection = null;
+        this.drawCanvas(null);
+      }
+      else {
+            if (typeof areaValueKeys === 'string' && areaValueKeys.includes(',')) areaValueKeys = areaValueKeys.replace(/\s/g, '').split(',');
+        else if (!Array.isArray(areaValueKeys)) areaValueKeys = [areaValueKeys];
+		areaValueKeys = areaValueKeys.map((item) => item.toString());
+        var areas = Array.prototype.slice.call(this.$map.get(0).areas).filter((item) => areaValueKeys.includes(item[_this.options.areaValueKey]));
+        this.selection = Array.prototype.slice.call(areas);
+        this.drawCanvas();
+      };
+    },
+
+	/**
+      Select all areas. (by Erik Carretoni - 2023-04-12)
+
+      Here is an example on how you can call the selectAll method:
+
+          $image.pictarea('selectAll');
+    */
+    selectAll: function () {
+      var areas = Array.prototype.slice.call(this.$map.get(0).areas);
+      this.selection = Array.prototype.slice.call(areas);
+      this.drawCanvas();
+    },
+
+    /**
+      Clear all selections made by the user. (by Erik Carretoni - 2023-04-12)
+
+      Here is an example on how you can call the clear method:
+    */
+    clearAll: function () {
+      this.selectAreas(null);
     }
   }
 }(window.jQuery);

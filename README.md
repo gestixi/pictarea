@@ -164,11 +164,41 @@ This event fires whenever the value has changed.
 
 ------
 
+##Method
+
+
+### selectAreas([areValueKey, areValueKey, ...])
+
+This method selects the specific area elements in the picture, according to their areaValueKeys, passed as parameter.
+
+    $img.pictarea('selectAreas', [1, 2]);
+    $img.pictarea('selectAreas', ['1', '2']);
+    $img.pictarea('selectAreas', 1);
+    $img.pictarea('selectAreas', '1');
+    $img.pictarea('selectAreas', '1, 2');
+
+
+### selectAll
+
+This method selects all the area elements in the picture.
+
+    $img.pictarea('selectAll');
+
+
+### clearAll
+
+This method clear all selections made by the user.
+
+    $img.pictarea('clearAll');
+
+
+------
+
 ## Size
 
-Original Size:  3.09KB gzipped (11.38KB uncompressed)
+Original Size:  3.59KB gzipped (13.97KB uncompressed)
 
-Compiled Size:  **1.85KB gzipped** (4.55KB uncompressed)
+Compiled Size:  **2.43KB gzipped** (7.26KB uncompressed)
 
 
 ------
@@ -179,6 +209,13 @@ Compiled Size:  **1.85KB gzipped** (4.55KB uncompressed)
 
 + [https://twitter.com/@nicolas_badia](https://twitter.com/@nicolas_badia)
 + [https://github.com/nicolasbadia](https://github.com/nicolasbadia)
+
+## Forked by
+
+**Erik Carretoni**
+
++ [https://t.me/carretonierik](https://t.me/carretonierik)
++ [https://github.com/carretonierik](https://github.com/carretonierik)
 
 ------
 
