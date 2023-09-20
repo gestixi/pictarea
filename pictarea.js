@@ -3,7 +3,7 @@
 // Description: jQuery plugin to draw HTML Image map areas on a canvas and manage selection
 // Copyright:   ©2016-2019 GestiXi
 // License:     Licensed under the MIT license (see LICENCE)
-// Version:     1.1.0
+// Version:     1.2.0
 // Author:      Nicolas BADIA
 // ==========================================================================
 
@@ -187,7 +187,7 @@
       })
       .on('click touchstart', function(evt) {
         that.select(evt);
-        evt.preventDefault();
+        if (evt.cancelable) evt.preventDefault();
       });
 
     if (options.rescaleOnResize) {

@@ -1,6 +1,6 @@
 {
   "name": "pictarea",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "jQuery plugin to draw HTML Image map areas on a canvas and manage selection",
   "main": "pictarea.js",
   "scripts": {

@@ -166,9 +166,9 @@ This event fires whenever the value has changed.
 
 ## Size
 
-Original Size:  3.09KB gzipped (11.38KB uncompressed)
+Original Size:  3.19KB gzipped (11.68KB uncompressed)
 
-Compiled Size:  **1.85KB gzipped** (4.55KB uncompressed)
+Compiled Size:  **1.95KB gzipped** (4.75KB uncompressed)
 
 
 ------
